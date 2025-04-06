@@ -19,7 +19,7 @@ export default function AdminSettings() {
 
       <Separator />
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-1">
         <Card>
           <CardHeader>
             <CardTitle>Profile Information</CardTitle>
@@ -49,7 +49,7 @@ export default function AdminSettings() {
           </CardContent>
         </Card>
 
-        <Card>
+        {/* <Card>
           <CardHeader>
             <CardTitle>Security Settings</CardTitle>
             <CardDescription>Manage your password and security preferences</CardDescription>
@@ -69,7 +69,7 @@ export default function AdminSettings() {
             </div>
             <Button>Update Password</Button>
           </CardContent>
-        </Card>
+        </Card> */}
 
         <Card>
           <CardHeader>

@@ -84,29 +84,29 @@ export default function MyBooks() {
           <TabsTrigger value="history">Borrowing History</TabsTrigger>
         </TabsList>
         <TabsContent value="current" className="space-y-4">
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {borrowedBooks.map((book) => (
-              <Card key={book.id}>
-                <CardHeader>
-                  <CardTitle className="line-clamp-1">{book.title}</CardTitle>
-                  <CardDescription>{book.author}</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between text-sm">
-                      <span>Reading Progress</span>
-                      <span>{book.progress}%</span>
-                    </div>
-                    <Progress value={book.progress} />
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <Clock className="h-4 w-4" />
-                    <span>Due: {new Date(book.dueDate).toLocaleDateString()}</span>
+              <Card key={book.id} className="flex flex-col overflow-hidden">
+                <CardHeader className="flex-1 pb-2">
+                  <div className="aspect-[3/4] relative mb-3 overflow-hidden rounded-md">
+                    <img
+                      src={book.cover}
+                      alt={book.title}
+                      className="object-cover w-full h-full transition-transform hover:scale-105"
+                    />
                     {book.isOverdue && (
-                      <Badge variant="destructive" className="ml-auto">
+                      <Badge variant="destructive" className="absolute top-2 right-2">
                         Overdue
                       </Badge>
                     )}
+                  </div>
+                  <CardTitle className="line-clamp-1">{book.title}</CardTitle>
+                  <CardDescription>{book.author}</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-3 pt-0">
+                  <div className="flex items-center gap-2 text-sm">
+                    <Clock className="h-4 w-4" />
+                    <span>Due: {new Date(book.dueDate).toLocaleDateString()}</span>
                   </div>
                 </CardContent>
                 <CardFooter>
@@ -131,4 +131,4 @@ export default function MyBooks() {
       </Tabs>
     </div>
   );
-} 
+}

@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { ThemeProvider } from '@/components/theme-provider';
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
@@ -116,9 +117,11 @@ const Sidebar = ({ routes, isCollapsed }: SidebarProps) => {
             <Button
               variant="ghost"
               className={cn(
-                "w-full justify-start gap-4 relative hover:bg-accent hover:text-accent-foreground",
-                pathname === route.href && "bg-accent text-accent-foreground",
-                isCollapsed ? "h-12 w-12 p-0 justify-center mx-auto" : "h-12 px-4",
+                "justify-start gap-4 relative hover:bg-accent/20 hover:text-accent-foreground rounded-md",
+                pathname === route.href && "bg-accent/30 text-accent-foreground",
+                isCollapsed 
+                  ? "h-12 w-12 p-0 justify-center items-center mx-auto flex" 
+                  : "h-12 px-4 w-[calc(100%-16px)] mx-2",
               )}
             >
               <route.icon className={cn(
@@ -146,6 +149,12 @@ export default function DashboardLayout({
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   return (
+    <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
     <div className="flex min-h-screen">
       {/* Sidebar */}
       <div
@@ -157,7 +166,7 @@ export default function DashboardLayout({
         {/* Logo */}
         <div className={cn(
           "flex h-16 items-center border-b px-4 transition-all duration-300",
-          isCollapsed ? "justify-center" : "justify-start gap-2"
+          isCollapsed ? "justify-center items-center" : "justify-start gap-2"
         )}>
           <div className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10">
             <Library className="h-5 w-5 text-primary" />
@@ -178,8 +187,8 @@ export default function DashboardLayout({
           <Button
             variant="ghost"
             className={cn(
-              "w-full justify-start gap-4 hover:bg-accent hover:text-accent-foreground",
-              isCollapsed ? "h-12 w-12 p-0 justify-center mx-auto" : "h-12 px-4",
+              "justify-start gap-4 hover:bg-accent/20 hover:text-accent-foreground rounded-md",
+              isCollapsed ? "h-12 w-12 p-0 justify-center items-center mx-auto flex" : "h-12 px-4 w-[calc(100%-16px)] mx-2",
             )}
           >
             <Bell className="h-5 w-5 text-muted-foreground" />
@@ -189,8 +198,8 @@ export default function DashboardLayout({
           <Button
             variant="ghost"
             className={cn(
-              "w-full justify-start gap-4 text-red-500 hover:bg-red-50 hover:text-red-600",
-              isCollapsed ? "h-12 w-12 p-0 justify-center mx-auto" : "h-12 px-4",
+              "justify-start gap-4 text-red-500 hover:bg-red-50/40 hover:text-red-600 rounded-md",
+              isCollapsed ? "h-12 w-12 p-0 justify-center items-center mx-auto flex" : "h-12 px-4 w-[calc(100%-16px)] mx-2",
             )}
           >
             <LogOut className="h-5 w-5" />
@@ -201,8 +210,8 @@ export default function DashboardLayout({
             variant="ghost"
             size="icon"
             className={cn(
-              "w-full h-12 hover:bg-accent hover:text-accent-foreground",
-              isCollapsed && "mx-auto"
+              "h-12 hover:bg-accent/20 hover:text-accent-foreground rounded-md",
+              isCollapsed ? "mx-auto flex justify-center items-center w-12" : "w-[calc(100%-16px)] mx-2"
             )}
             onClick={() => setIsCollapsed(!isCollapsed)}
           >
@@ -220,19 +229,15 @@ export default function DashboardLayout({
         "flex-1 flex flex-col transition-all duration-300",
         isCollapsed ? "pl-[68px]" : "pl-64"
       )}>
-        <div className="h-16 border-b flex items-center px-8">
-          <Input
-            type="search"
-            placeholder="Search..."
-            className="max-w-xs"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
+        <div className="h-16 border-b flex items-center justify-between px-8">
+          <div></div> {/* Empty div for flex spacing */}
+          <ThemeToggle />
         </div>
         <div className="flex-1 p-8">
           {children}
         </div>
       </div>
     </div>
+    </ThemeProvider>
   );
 }

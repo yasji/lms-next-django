@@ -19,7 +19,7 @@ export default function ReaderSettings() {
 
       <Separator />
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-8 sm:grid-cols-1 ">
         <Card>
           <CardHeader>
             <CardTitle>Profile Information</CardTitle>
@@ -71,7 +71,7 @@ export default function ReaderSettings() {
           </CardContent>
         </Card>
 
-        <Card>
+        {/* <Card>
           <CardHeader>
             <CardTitle>Notification Preferences</CardTitle>
             <CardDescription>Configure how you receive notifications</CardDescription>
@@ -149,7 +149,7 @@ export default function ReaderSettings() {
               <Switch defaultChecked />
             </div>
           </CardContent>
-        </Card>
+        </Card> */}
       </div>
     </div>
   );
