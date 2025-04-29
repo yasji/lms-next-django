@@ -4,6 +4,7 @@ from .user import User
 
 # Event model to manage events
 class Event(models.Model):
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255)
     description = models.TextField()
     location = models.CharField(max_length=255)

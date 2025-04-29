@@ -24,9 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure--8(-e07obz(s&_jw9%jqhm=mp48&!=urvb+@#sq4&hgvkgyl2s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 AUTH_USER_MODEL = 'core.User'  # Fixed: proper format for custom user model
 # Application definition
@@ -88,9 +89,11 @@ DATABASES = {
 
 # CORS settings to allow frontend requests
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Next.js development server
+    "http://127.0.0.1:3000",  # Next.js development server
 ]
+# allow all cors
 
+CORS_ALLOW_ALL_ORIGINS = True
 # Add these new CORS settings
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = [

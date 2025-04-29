@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
+    id = models.AutoField(primary_key=True)
     ADMIN = 'admin'
     READER = 'reader'
     
